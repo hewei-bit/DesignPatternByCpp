@@ -58,12 +58,65 @@ public:
 //派生类
 class FingerPrintModuleA : public FingerPrintModule
 {
+public:
+    FingerPrintModuleA() {}
+    void processImage()
+    {
+        cout << "使用第一代算法 处理指纹图像" << endl;
+    }
+    bool isSafeMode()
+    {
+        cout << "安全模式" << endl;
+        return true;
+    }
+    void encrypt()
+    {
+        cout << "使用RSA密钥加密" << endl;
+    }
+    void decrypt()
+    {
+        cout << "使用RSA密钥解密" << endl;
+    }
 };
 
 class FingerPrintModuleB : public FingerPrintModule
 {
+public:
+    FingerPrintModuleB() {}
+    void processImage()
+    {
+        cout << "使用第二代算法 处理指纹图像" << endl;
+    }
+    bool isSafeMode()
+    {
+        cout << "非安全模式" << endl;
+        return true;
+    }
+    void encrypt()
+    {
+    }
+    void decrypt() {}
 };
 class FingerPrintModuleC : public FingerPrintModule
 {
+public:
+    FingerPrintModuleC() {}
+    void processImage()
+    {
+        cout << "使用第三代算法 处理指纹图像" << endl;
+    }
+    bool isSafeMode()
+    {
+        cout << "安全模式" << endl;
+        return true;
+    }
+    void encrypt()
+    {
+        cout << "使用DH密钥加密" << endl;
+    }
+    void decrypt()
+    {
+        cout << "使用DH密钥加密" << endl;
+    }
 };
 #endif
