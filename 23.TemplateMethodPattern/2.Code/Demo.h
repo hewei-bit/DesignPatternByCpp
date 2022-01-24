@@ -1,3 +1,5 @@
+#ifndef __DEMO_H__
+#define __DEMO_H__
 /**
  * @File Name: Demo.h
  * @Brief : 模板方法demo，基类中定义定义算法框架，
@@ -8,8 +10,6 @@
  * @Creat Date : 2021-12-27
  *
  */
-#ifndef __DEMO_H__
-#define __DEMO_H__
 
 //抽象类（基类）
 class AbstractClass

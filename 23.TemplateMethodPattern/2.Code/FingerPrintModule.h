@@ -1,3 +1,5 @@
+#ifndef __FingerPrintModule_H__
+#define __FingerPrintModule_H__
 /**
  * @File Name: FingerPrintModule.h
  * @Brief : 用一个调用指纹解锁算法的应用实例，实现模板方法
@@ -6,8 +8,6 @@
  * @Creat Date : 2021-12-27
  *
  */
-#ifndef __FingerPrintModule_H__
-#define __FingerPrintModule_H__
 
 #include <stdio.h>
 #include <iostream>
