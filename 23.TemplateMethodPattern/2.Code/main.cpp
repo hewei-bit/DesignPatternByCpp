@@ -1,5 +1,5 @@
 #include "FingerPrintModule.h"
-#include <Windows.h>
+
 using namespace std;
 
 int main()

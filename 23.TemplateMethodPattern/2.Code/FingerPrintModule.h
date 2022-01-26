@@ -2,7 +2,7 @@
 #define __FingerPrintModule_H__
 /**
  * @File Name: FingerPrintModule.h
- * @Brief : ÓÃÒ»¸öµ÷ÓÃÖ¸ÎÆ½âËøËã·¨µÄÓ¦ÓÃÊµÀı£¬ÊµÏÖÄ£°å·½·¨
+ * @Brief : ç”¨ä¸€ä¸ªè°ƒç”¨æŒ‡çº¹è§£é”ç®—æ³•çš„åº”ç”¨å®ä¾‹ï¼Œå®ç°æ¨¡æ¿æ–¹æ³•
  * @Author : hewei (hewei_1996@qq.com)
  * @Version : 1.0
  * @Creat Date : 2021-12-27
@@ -13,7 +13,7 @@
 #include <iostream>
 
 using namespace std;
-//»ùÀà
+//åŸºç±»
 class FingerPrintModule
 {
 
@@ -22,60 +22,60 @@ public:
     virtual ~FingerPrintModule() {}
     void getImage()
     {
-        printf("²É¼¯Ö¸ÎÆÍ¼Ïñ\n");
+        printf("é‡‡é›†æŒ‡çº¹å›¾åƒ\n");
     }
     void output()
     {
-        std::cout << "Ö¸ÎÆÍ¼Ïñ´¦ÀíÍê³É" << std::endl;
+        std::cout << "æŒ‡çº¹å›¾åƒå¤„ç†å®Œæˆ" << std::endl;
     }
-    //Áô¸ø×ÓÀàÊµÏÖ
+    //ç•™ç»™å­ç±»å®ç°
     virtual bool isSafeMode() = 0;
     virtual void processImage() = 0;
     virtual void encrypt() = 0;
     virtual void decrypt() = 0;
 
-    //Ä£°å·½·¨£ºËã·¨¿ò¼Ü
+    //æ¨¡æ¿æ–¹æ³•ï¼šç®—æ³•æ¡†æ¶
     void algorithm()
     {
-        // 1.²ÉÍ¼
+        // 1.é‡‡å›¾
         getImage();
 
-        // 2.°²È«Ä£Ê½ÏÂ¼Ó½âÃÜ
+        // 2.å®‰å…¨æ¨¡å¼ä¸‹åŠ è§£å¯†
         if (isSafeMode())
         {
-            // 2.1¼ÓÃÜ
+            // 2.1åŠ å¯†
             encrypt();
-            // 2.2½âÃÜ
+            // 2.2è§£å¯†
             decrypt();
         }
-        // 3.´¦ÀíImage
+        // 3.å¤„ç†Image
         processImage();
-        // 4.´¦Àí½á¹û
+        // 4.å¤„ç†ç»“æœ
         output();
     }
 };
 
-//ÅÉÉúÀà
+//æ´¾ç”Ÿç±»
 class FingerPrintModuleA : public FingerPrintModule
 {
 public:
     FingerPrintModuleA() {}
     void processImage()
     {
-        cout << "Ê¹ÓÃµÚÒ»´úËã·¨ ´¦ÀíÖ¸ÎÆÍ¼Ïñ" << endl;
+        cout << "ä½¿ç”¨ç¬¬ä¸€ä»£ç®—æ³• å¤„ç†æŒ‡çº¹å›¾åƒ" << endl;
     }
     bool isSafeMode()
     {
-        cout << "°²È«Ä£Ê½" << endl;
+        cout << "å®‰å…¨æ¨¡å¼" << endl;
         return true;
     }
     void encrypt()
     {
-        cout << "Ê¹ÓÃRSAÃÜÔ¿¼ÓÃÜ" << endl;
+        cout << "ä½¿ç”¨RSAå¯†é’¥åŠ å¯†" << endl;
     }
     void decrypt()
     {
-        cout << "Ê¹ÓÃRSAÃÜÔ¿½âÃÜ" << endl;
+        cout << "ä½¿ç”¨RSAå¯†é’¥è§£å¯†" << endl;
     }
 };
 
@@ -85,11 +85,11 @@ public:
     FingerPrintModuleB() {}
     void processImage()
     {
-        cout << "Ê¹ÓÃµÚ¶ş´úËã·¨ ´¦ÀíÖ¸ÎÆÍ¼Ïñ" << endl;
+        cout << "ä½¿ç”¨ç¬¬äºŒä»£ç®—æ³• å¤„ç†æŒ‡çº¹å›¾åƒ" << endl;
     }
     bool isSafeMode()
     {
-        cout << "·Ç°²È«Ä£Ê½" << endl;
+        cout << "éå®‰å…¨æ¨¡å¼" << endl;
         return true;
     }
     void encrypt()
@@ -103,20 +103,20 @@ public:
     FingerPrintModuleC() {}
     void processImage()
     {
-        cout << "Ê¹ÓÃµÚÈı´úËã·¨ ´¦ÀíÖ¸ÎÆÍ¼Ïñ" << endl;
+        cout << "ä½¿ç”¨ç¬¬ä¸‰ä»£ç®—æ³• å¤„ç†æŒ‡çº¹å›¾åƒ" << endl;
     }
     bool isSafeMode()
     {
-        cout << "°²È«Ä£Ê½" << endl;
+        cout << "å®‰å…¨æ¨¡å¼" << endl;
         return true;
     }
     void encrypt()
     {
-        cout << "Ê¹ÓÃDHÃÜÔ¿¼ÓÃÜ" << endl;
+        cout << "ä½¿ç”¨DHå¯†é’¥åŠ å¯†" << endl;
     }
     void decrypt()
     {
-        cout << "Ê¹ÓÃDHÃÜÔ¿¼ÓÃÜ" << endl;
+        cout << "ä½¿ç”¨DHå¯†é’¥åŠ å¯†" << endl;
     }
 };
 #endif
