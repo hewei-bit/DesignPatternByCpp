@@ -1,4 +1,6 @@
-#include "context.h"
+#include "inc/context.h"
+#include "inc/strategy.h"
+
 #include <iostream>
 
 int main()
