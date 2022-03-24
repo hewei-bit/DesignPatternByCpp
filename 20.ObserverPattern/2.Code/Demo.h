@@ -1,41 +1,73 @@
+/**
+ * @File Name: Demo.h
+ * @Brief :
+ * @Author : hewei (hewei_1996@qq.com)
+ * @Version : 1.0
+ * @Creat Date : 2022-03-25
+ *
+ */
 #ifndef __DEMO_H_
 #define __DEMO_H_
 
 using namespace std;
 #include <list>
 
-// ³éÏó¹Û²ìÕß
+// æŠ½è±¡è§‚å¯Ÿè€… Observer
 class Observer
 {
 public:
     virtual ~Observer() {}
-    // ÉùÃ÷ÏìÓ¦¸üĞÂ·½·¨
+    // å£°æ˜å“åº”æ›´æ–°æ–¹æ³•
     virtual void update() = 0;
 };
 
-// ¾ßÌå¹Û²ìÕß
+// å…·ä½“è§‚å¯Ÿè€…
 class ConcreteObserver : public Observer
 {
 public:
-    // ÏìÓ¦·½·¨¸üĞÂ
+    // å®ç°å“åº”æ›´æ–°æ–¹æ³•
     void update()
     {
-        // ¾ßÌå²Ù×÷
+        // å…·ä½“æ“ä½œ
     }
 };
 
-// ³éÏóÄ¿±ê
+// æŠ½è±¡ç›®æ ‡
 class Subject
 {
 public:
     virtual ~Subject() {}
-    // Ìí¼Ó¹Û²ìÕß
+    // æ·»åŠ è§‚å¯Ÿè€…
     void attach(Observer *obs)
     {
+        oblist.push_back(obs);
     }
 
-    // ÒÆ³ı¹Û²ìÕß
-protected
+    // ç§»é™¤è§‚å¯Ÿè€…
+    void detach(Observer *obs)
+    {
+        oblist.remove(obs);
+    }
+    // å£°æ˜é€šçŸ¥æ–¹æ³•
+    virtual void notify() = 0;
+
+protected:
+    list<Observer *> oblist;
 };
 
+// å…·ä½“ç›®æ ‡
+class ConcreteSubject : public Subject
+{
+public:
+    // å®ç°é€šçŸ¥æ–¹æ³•
+    void notify()
+    {
+        // å…·ä½“æ“ä½œ
+        // éå†é€šçŸ¥è§‚å¯Ÿè€…å¯¹è±¡
+        for (auto ob : oblist)
+        {
+            ob->update();
+        }
+    }
+};
 #endif
