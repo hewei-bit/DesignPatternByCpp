@@ -22,6 +22,20 @@ public:
     {
         // 具体操作
     }
-}
+};
+
+// 抽象目标
+class Subject
+{
+public:
+    virtual ~Subject() {}
+    // 添加观察者
+    void attach(Observer *obs)
+    {
+    }
+
+    // 移除观察者
+protected
+};
 
 #endif
