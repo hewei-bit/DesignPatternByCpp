@@ -28,10 +28,11 @@
 #### 17.iterator 迭代器
 #### 18.mediator 中介者
 #### 19.memento 备忘录
-#### 20.Observer
-#### 21.Strategy
-#### 22.State 策略
+#### 20.Observer 观察者模式
+#### 21.Strategy 策略
+
+#### 22.State 状态
 #### 23.TemplateMethodPattern 模板方法
 * 模板定义：定义一个操作中的算法的骨架（稳定），而将一些步骤延迟（变化）到子类中
 * 不要调用我，让我来调用你
-#### 24.Visitor 观察模式
+#### 24.Visitor 访问模式
