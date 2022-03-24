@@ -6,6 +6,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 
 set(CMAKE_BUILD_TYPE Debug)
 
-include_directories(${CMAKE_SOURCE_DIR}/2.Code/inc)
+set(code 2.Code)
 
-add_executable(TemplateMethod main.cpp)
+include_directories(${CMAKE_SOURCE_DIR}/${code}/inc)
+
+add_executable(TemplateMethod ./${code}/main.cpp)
