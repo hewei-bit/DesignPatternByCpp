@@ -1,4 +1,5 @@
-23.TemplateMethodPattern/build
-22.StrategyPattern/build
-20.ObserverPattern/build
 .vscode
+20.ObserverPattern/build
+
+22.StrategyPattern/build
+23.TemplateMethodPattern/build
