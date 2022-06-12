@@ -1,6 +1,6 @@
 /**
  * @File Name: strategy.h
- * @Brief :  ²ßÂÔÄ£Ê½--ÓÃÓÚ¶¨ÒåËã·¨µÄÎÄ¼ş
+ * @Brief :  ç­–ç•¥æ¨¡å¼--ç”¨äºå®šä¹‰ç®—æ³•çš„æ–‡ä»¶
  * @Author : hewei (hewei_1996@qq.com)
  * @Version : 1.0
  * @Creat Date : 2022-01-02
@@ -14,7 +14,7 @@
 #include <iostream>
 using namespace std;
 
-// ³éÏó²ßÂÔÀà
+// æŠ½è±¡ç­–ç•¥ç±»
 class Strategy
 {
 public:
@@ -23,35 +23,38 @@ public:
     virtual void sort(int arr[], int N) = 0;
 };
 
-// ¾ßÌå²ßÂÔ£ºÃ°ÅİÅÅĞò
-class BubbleSort : public Strategy public : BubbleSort()
+// å…·ä½“ç­–ç•¥ï¼šå†’æ³¡æ’åº
+class BubbleSort : public Strategy
 {
-    cout << "Ã°ÅİÅÅĞò" << endl;
-} void sort(int arr[], int N)
-{
-    for (int i = 0; i < N; i++)
+public:
+    BubbleSort()
     {
-        for (int j = 0; j < N - i - 1; j++)
+        cout << "å†’æ³¡æ’åº" << endl;
+    }
+    void sort(int arr[], int N)
+    {
+        for (int i = 0; i < N; i++)
         {
-            if (arr[j] > arr[j + 1])
+            for (int j = 0; j < N - i - 1; j++)
             {
-                int tmp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = tmp;
+                if (arr[j] > arr[j + 1])
+                {
+                    int tmp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = tmp;
+                }
             }
         }
     }
-}
-}
-;
+};
 
-// ¾ßÌå²ßÂÔ£ºÑ¡ÔñÅÅĞò
+// å…·ä½“ç­–ç•¥ï¼šé€‰æ‹©æ’åº
 class SelectionSort : public Strategy
 {
 public:
     SelectionSort()
     {
-        printf("Ñ¡ÔñÅÅĞò\n");
+        printf("é€‰æ‹©æ’åº\n");
     }
     void sort(int arr[], int N)
     {
@@ -73,13 +76,13 @@ public:
     }
 };
 
-// ¾ßÌå²ßÂÔ£º²åÈëÅÅĞò
+// å…·ä½“ç­–ç•¥ï¼šæ’å…¥æ’åº
 class InsertSort : public Strategy
 {
 public:
     InsertSort()
     {
-        printf("²åÈëÅÅĞò\n");
+        printf("æ’å…¥æ’åº\n");
     }
     void sort(int arr[], int N)
     {
