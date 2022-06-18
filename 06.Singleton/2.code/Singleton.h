@@ -1,9 +1,12 @@
 /**
  * @File Name: Singleton.h
  * @Brief : 单例模式
+ * 保证一个类仅有一个实例，并提供一个该实例的全局访问点。 ——《设计模式》GoF
  * @Author : hewei (hewei_1996@qq.com)
  * @Version : 1.0
  * @Creat Date : 2022-04-19
+ * @finished Date : 2022-06-18
+ * @Statement : finished
  *
  */
 
@@ -14,8 +17,9 @@
 #include <string.h>
 #include <mutex>
 
-#define Version_0 0
-#define Version_1 1
+#define Version_0_0 0
+#define Version_0_1 0
+#define Version_1 0
 #define Version_2 1
 #define Version_3 1
 #define Version_4 1
@@ -24,7 +28,8 @@
 
 using namespace std;
 
-#if Version_0
+#if Version_0_0
+// 懒汉模式
 class Singleton_Lazy
 {
 public:
@@ -54,6 +59,9 @@ private:
 Singleton_Lazy *Singleton_Lazy::instance = NULL;
 std::mutex Singleton_Lazy::m_mutex;
 
+#elif Version_0_1
+
+// 饿汉模式
 class Singleton_Hungry
 {
 public:
@@ -72,7 +80,49 @@ Singleton_Hungry *Singleton_Hungry::instance = new Singleton_Hungry;
 
 #elif Version_1
 
+class Singleton
+{
+public:
+    static Singleton *Getinstance()
+    {
+        if (_instance == nullptr)
+            _instance == new Singleton();
+        return _instance;
+    }
+
+private:
+    // 需要将默认生成的函数保护起来
+    Singleton() {}                             // 构造
+    ~Singleton() {}                            // 析构函数
+    Singleton(const Singleton &clone) {}       // 拷贝构造函数
+    Singleton &operator=(const Singleton &) {} // 赋值
+    static Singleton *_instance;               // static 实例
+};
+
+Singleton *Singleton::_instance = nullptr;
+
 #elif Version_2
+
+class Singleton
+{
+public:
+    static Singleton *Getinstance()
+    {
+        if (_instance == nullptr)
+            _instance == new Singleton();
+        return _instance;
+    }
+
+private:
+    // 需要将默认生成的函数保护起来
+    Singleton() {}                             // 构造
+    ~Singleton() {}                            // 析构函数
+    Singleton(const Singleton &clone) {}       // 拷贝构造函数
+    Singleton &operator=(const Singleton &) {} // 赋值
+    static Singleton *_instance;               // static 实例
+};
+
+Singleton *Singleton::_instance = nullptr;
 
 #elif Version_3
 
