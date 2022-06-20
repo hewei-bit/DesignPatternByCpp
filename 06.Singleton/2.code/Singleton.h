@@ -20,7 +20,7 @@
 #define Version_0_0 0
 #define Version_0_1 0
 #define Version_1 0
-#define Version_2 1
+#define Version_2 0
 #define Version_3 1
 #define Version_4 1
 #define Version_5 1
@@ -98,33 +98,86 @@ private:
     Singleton &operator=(const Singleton &) {} // 赋值
     static Singleton *_instance;               // static 实例
 };
-
+// 静态成员需要初始化
 Singleton *Singleton::_instance = nullptr;
 
 #elif Version_2
-
+// 类对象之间 友元
 class Singleton
 {
 public:
     static Singleton *Getinstance()
     {
         if (_instance == nullptr)
+        {
             _instance == new Singleton();
+            atexit(Destructor);
+        }
+
         return _instance;
     }
 
 private:
     // 需要将默认生成的函数保护起来
+    static void Destructor()
+    {
+        if (nullptr != _instance)
+        {
+            delete _instance;
+            _instance = nullptr;
+        }
+    }
     Singleton() {}                             // 构造
     ~Singleton() {}                            // 析构函数
     Singleton(const Singleton &clone) {}       // 拷贝构造函数
     Singleton &operator=(const Singleton &) {} // 赋值
     static Singleton *_instance;               // static 实例
 };
-
+// 静态成员需要初始化
+// 还可以使?内部类，智能指针来解决； 此时还有线程安全问题
 Singleton *Singleton::_instance = nullptr;
 
 #elif Version_3
+// 类对象之间 友元
+class Singleton // 懒汉模式 lazy load
+{
+public:
+    static Singleton *GetInstance()
+    {
+        // std::lock_guard<std::mutex> lock(_mutex); // 3.1 切换线程
+        if (_instance == nullptr)
+        {
+            lock_guard<mutex> lock(_mutex); // 3.2
+            if (_instance == nullptr)
+            {
+                _instance = new Singleton();
+                // 1. 分配内存
+                // 2. 调用构造函数
+                // 3. 返回指针
+                // 多线程环境下 cpu reorder操作
+                atexit(Destructor);
+            }
+        }
+        return _instance;
+    }
+
+private:
+    static void Destructor()
+    {
+        if (nullptr != _instance)
+        {
+            delete _instance;
+            _instance = nullptr;
+        }
+    }
+    Singleton() {}                     //构造
+    Singleton(const Singleton &cpy) {} //拷?构造
+    Singleton &operator=(const Singleton &) {}
+    static Singleton *_instance;
+    static mutex _mutex;
+};
+Singleton *Singleton::_instance = nullptr; //静态成员需要初始化
+mutex Singleton::_mutex;                   //互斥锁初始化
 
 #elif Version_4
 

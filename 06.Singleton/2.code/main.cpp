@@ -13,10 +13,14 @@
 #define SIMPLE 1
 
 #if SIMPLE
+int main()
+{
+    Singleton *s1 = Singleton::Getinstance();
+    Singleton *s2 = Singleton::Getinstance();
 
-#endif
-
-#ifdef win32
+    system("pause");
+    return 0;
+}
 
 #else
 
